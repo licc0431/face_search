@@ -5,6 +5,7 @@ from __future__ import print_function
 import sys
 import os
 import argparse
+
 import numpy as np
 import mxnet as mx
 import cv2
@@ -49,7 +50,7 @@ class FaceModel:
         self.image_size = image_size
 
     def get_input(self, face_img):
-        bbox, pts5 = self.detector.detect(face_img, threshold=0.8)
+        bbox, pts5 = self.detector.detect(face_img, threshold=0.8)   # 非极大值抑制阈值 0.8
         if bbox.shape[0]==0:
             return None
         bbox = bbox[0, 0:4]

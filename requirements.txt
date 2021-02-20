@@ -2,9 +2,8 @@ numpy==1.19.5
 pymilvus==0.2.13
 Werkzeug==1.0.1
 flask-cors
-flask_restful
+flask-restful
 flask
 diskcache==5.2.1
-opencv_python==4.5.1.48
-insightface==0.1.5
-mxnet_cu102==1.6.0.post0
+opencv-python==4.5.1.48
+mxnet-cu102==1.6.0.post0
