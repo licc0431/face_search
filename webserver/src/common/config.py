@@ -11,7 +11,7 @@ UPLOAD_PATH = "/home/lichengchao/data/search-images"  # 搜索图片路径
 
 # 人脸识别
 ctx_id = 0  # gpu id
-model_prefix = '/home/lichengchao/face_search/webserver/src/preprocessor/models/mobilefacenet-v1/model'
+model_prefix = '/home/lichengchao/face_search/webserver/data/models/model-r34-amf/model'
 model_epoch = 0000
 # 人脸检测
-retinaface_root = '/home/lichengchao/face_search/webserver/src/preprocessor/models'  # 人脸检测模型查找路径,如无会在该路径下自动下载
+retinaface_root = '/home/lichengchao/face_search/webserver/data/models'  # 人脸检测模型查找路径,如无会在该路径下自动下载

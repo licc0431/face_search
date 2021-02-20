@@ -15,11 +15,15 @@ def do_train(table_name, database_path):
         table_name = DEFAULT_TABLE
     cache = Cache(default_cache_dir)
     try:
+        start_time = time.time()
+
         vectors, names = feature_extract(database_path, FaceModel(ctx_id, model_prefix, model_epoch))   # feature_extract-encode
+
+        print(vectors[0])
         index_client = milvus_client() # 连接服务器
         #delete_table(index_client, table_name=table_name) # 如果集合配置有变，需删除原集合或者新建
         # time.sleep(1)
-        status, ok = has_table(index_client, table_name)  #  创建集合
+        status, ok = has_table(index_client, table_name)  # 创建集合
         if not ok:
             print("create table.")
             create_table(index_client, table_name=table_name)
@@ -31,6 +35,11 @@ def do_train(table_name, database_path):
             cache[ids[i]] = names[i]
         print("Train finished")
         return "Train finished"
+
+        end_time = time.time()
+        average_time = (end_time - start_time)
+        print(average_time)
+
     except Exception as e:
         logging.error(e)
         return "Error with {}".format(e)
