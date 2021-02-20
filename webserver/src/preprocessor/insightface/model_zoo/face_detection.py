@@ -3,7 +3,6 @@ import mxnet as mx
 import numpy as np
 import mxnet.ndarray as nd
 import cv2
-from common.config import retinaface_root
 
 
 __all__ = [
@@ -450,7 +449,7 @@ class FaceDetector:
         return keep
 
 
-def get_retinaface(name, rac='net3', root=retinaface_root, **kwargs):
+def get_retinaface(name, rac='net3', root='/home/lichengchao/PycharmProjects/insightface/models', **kwargs):
     from .model_store import get_model_file
     _file = get_model_file("retinaface_%s" % name, root=root)
     return FaceDetector(_file, rac)

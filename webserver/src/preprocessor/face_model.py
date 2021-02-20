@@ -5,12 +5,11 @@ from __future__ import print_function
 import sys
 import os
 import argparse
-
 import numpy as np
 import mxnet as mx
 import cv2
-import insightface
-from insightface.utils import face_align
+from .insightface import *
+from .insightface.utils import face_align
 
 # 数据翻转
 def do_flip(data):
@@ -37,9 +36,9 @@ def get_model(ctx, image_size, prefix, epoch, layer):
 class FaceModel:
     def __init__(self, ctx_id, model_prefix, model_epoch, use_large_detector=False):
         if use_large_detector:
-            self.detector = insightface.model_zoo.get_model('retinaface_r50_v1')
+            self.detector = model_zoo.get_model('retinaface_r50_v1')
         else:
-            self.detector = insightface.model_zoo.get_model('retinaface_mnet025_v2')
+            self.detector = model_zoo.get_model('retinaface_mnet025_v2')
         self.detector.prepare(ctx_id=ctx_id)
         if ctx_id>=0:
             ctx = mx.gpu(ctx_id)

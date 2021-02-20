@@ -3,7 +3,7 @@ import os.path as path
 from common.config import DATA_PATH, DEFAULT_TABLE
 from common.config import UPLOAD_PATH
 from common.const import default_cache_dir
-from webserver.src.service.train import do_train
+from service.train import do_train
 from service.search import do_search
 from service.count import do_count
 from service.delete import do_delete
