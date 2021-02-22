@@ -12,7 +12,9 @@ def feature_extract(database_path, model):
     img_list = get_imlist(database_path)
     model = model
     for i, img_path in enumerate(img_list):
-        norm_feat = model.get_face_feature(img_path)     # 人脸检测，对齐，裁剪,特征提取
+        detection = model.get_input(img_path)
+        if detection is not None:
+            norm_feat = model.get_feature(detection)     # 人脸检测，对齐，裁剪,特征提取
         img_name = os.path.split(img_path)[1]
         feats.append(norm_feat)
         names.append(img_name.encode())

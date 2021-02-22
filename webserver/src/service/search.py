@@ -20,7 +20,11 @@ def do_search(table_name, img_path, top_k):
         feats = []
         index_client = milvus_client()
         model = FaceModel(ctx_id, model_prefix, model_epoch)
-        feat = model.get_face_feature(img_path)   # vggnet-vgg_extract_feat
+        detection = model.get_input(img_path)
+        if detection is None:
+            print("No face found in the search image, please change the search image")
+        else:
+            feat = model.get_feature(detection)   # vggnet-vgg_extract_feat
         feats.append(feat)
         feats = np.array(feats)   # feats的格式需numpy.ndarray，注意特征维度匹配
         _, vectors = search_vectors(index_client, table_name, feats, top_k)

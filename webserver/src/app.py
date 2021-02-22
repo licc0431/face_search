@@ -60,7 +60,6 @@ def do_delete_api():
 
 @app.route('/api/v1/count', methods=['POST']) # 图库数量
 def do_count_api():
-    print("c")
     args = reqparse.RequestParser(). \
         add_argument('Table', type=str). \
         parse_args()
