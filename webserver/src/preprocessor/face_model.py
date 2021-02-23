@@ -50,13 +50,16 @@ class FaceModel:
 
     def get_input(self, img_path):
         face_img = cv2.imread(img_path)
-        bbox, pts5 = self.detector.detect(face_img, threshold=0.8)  # 非极大值抑制阈值 0.8
-        if bbox.shape[0] == 0:
+        try:
+            bbox, pts5 = self.detector.detect(face_img, threshold=0.8)  # 非极大值抑制阈值 0.8
+            if bbox.shape[0] == 0:
+                return None
+            bbox = bbox[0, 0:4]
+            pts5 = pts5[0, :]
+            nimg = face_align.norm_crop(face_img, pts5)
+            return nimg
+        except:
             return None
-        bbox = bbox[0, 0:4]
-        pts5 = pts5[0, :]
-        nimg = face_align.norm_crop(face_img, pts5)
-        return nimg
 
     def get_feature(self, aligned):
         a = cv2.cvtColor(aligned, cv2.COLOR_BGR2RGB)

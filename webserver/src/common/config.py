@@ -14,4 +14,4 @@ ctx_id = 0  # gpu id
 model_prefix = '/home/lichengchao/face_search/webserver/data/models/model-r34-amf/model'
 model_epoch = 0000
 # 人脸检测
-retinaface_root = '/home/lichengchao/face_search/webserver/data/models'  # 人脸检测模型查找路径,如无会在该路径下自动下载
+retinaface_root = '/home/lichengchao/face_search/webserver/data/models'  # 人脸检测模型查找路径,如无自动下载到改路径
